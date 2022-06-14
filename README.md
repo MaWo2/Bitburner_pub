@@ -14,6 +14,4 @@ If you can live with this, feel free to use them (for your game or inspiration o
 
 ## Content
 ### data mining
-Scripts and functions to profile the servers. I use this to generate a list of all servers (func_world-scanner.js) and to get the properties of all servers (world-profiler.js).
-
-Both is written to a txt-file. The profiles are in CSV-format.
+Scripts and functions to profile the servers. I use this to generate a list of all servers (func_world-scanner.js) and to get the properties of all servers (world-profiler.js). Both is written to a txt-file. The profiles are in CSV-format.
