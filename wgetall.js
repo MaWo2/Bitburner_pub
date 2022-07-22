@@ -46,4 +46,5 @@ export async function main(ns) {
 		//actual pull command
 		await ns.wget(gitPath, localPath);
 	}
+	ns.tprint("Script done running.");
 }
