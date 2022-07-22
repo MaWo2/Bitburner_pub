@@ -22,5 +22,5 @@ export async function main(ns) {
 		ns.exec(filesToExecute[i], "home", 1);
 		await ns.sleep(5000);
 	}
-
+	ns.tprint("LazyStarter done running. Enjoy!");
 }
