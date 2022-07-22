@@ -21,10 +21,10 @@ export async function main(ns) {
 		["loophack/", "weaken_once.js"],
 		["loophack/", "loop-queen-pserv.js"],
 		["loophack/", "loop-queen-outside.js"],
-		["batchhack", "hwgw-queen.js"],
-		["batchhack", "b-grow.js"],
-		["batchhack", "b-hack.js"],
-		["batchhack", "b-weaken.js"],
+		["batchhack/", "hwgw-queen.js"],
+		["batchhack/", "b-grow.js"],
+		["batchhack/", "b-hack.js"],
+		["batchhack/", "b-weaken.js"],
 		["data-mining/", "world-profiler.js"],
 		["data-mining/", "func_world-scanner.js"]
 	]
