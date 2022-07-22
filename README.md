@@ -13,7 +13,7 @@ My scripts are usually functional to an extend I can live with. However, they ar
 If you can live with this, feel free to use them (for your game or inspiration or whatever). If not, please look somewhere else.
 
 ## Getting started
-1) Run `wget "https://raw.githubusercontent.com/MaWo2/Bitburner_pub/master/???.js" "???.js"` to download the script to pull the rest
+1) Run `wget "https://raw.githubusercontent.com/MaWo2/Bitburner_pub/master/wgetall.js" "wgetall.js"` to download the script to pull the rest
 2) Run that script to download the rest of this repository.
 
 ## Content
