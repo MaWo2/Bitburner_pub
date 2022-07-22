@@ -6,7 +6,7 @@
 * Requires function to recursively scan all servers.
 */
 
-import * as worldScan from '/func_world-scanner.js'
+import * as worldScan from 'data-mining/func_world-scanner.js'
 /** @param {NS} ns */
 export async function main(ns) {
 	var list = [];
