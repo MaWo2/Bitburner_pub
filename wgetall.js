@@ -11,6 +11,9 @@ export async function main(ns) {
 	filesToPull = [
 		["", "monitor.js"],
 		["", "purchaseServer8GB.js"],
+		["", "scpToWorld.js"],
+		["", "selfHackWorld.js"],
+		["", "worldcracker.js"],
 		["simplehack/", "simplehack-self.js"],
 		["simplehack/", "simplehack-template.js"],
 		["loophack/", "grow_loop.js"],
