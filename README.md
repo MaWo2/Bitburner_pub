@@ -12,6 +12,10 @@ My scripts are usually functional to an extend I can live with. However, they ar
 
 If you can live with this, feel free to use them (for your game or inspiration or whatever). If not, please look somewhere else.
 
+## Getting started
+1) Run `wget "https://raw.githubusercontent.com/MaWo2/Bitburner_pub/master/???.js" "???.js"` to download the script to pull the rest
+2) Run that script to download the rest of this repository.
+
 ## Content
 ### data mining
 Scripts and functions to profile the servers. I use this to generate a list of all servers (func_world-scanner.js) and to get the properties of all servers (world-profiler.js). Both is written to a txt-file. The profiles are in CSV-format.
