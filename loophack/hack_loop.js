@@ -6,7 +6,7 @@ export async function main(ns) {
 		if (ns.getServerMoneyAvailable(target)>ns.getServerMaxMoney(target)*0.9) {
 			await ns.hack(target);
 		} else {
-			await sleep(1000);
+			await ns.sleep(1000);
 		}
 	}
 }
