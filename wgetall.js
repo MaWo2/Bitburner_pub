@@ -17,6 +17,7 @@ export async function main(ns) {
 		["", "selfHackWorld.js"],
 		["", "worldcracker.js"],
 		["", "lazystarter.js"],
+		["", "folder-scp.js"],
 		["simplehack/", "simplehack-self.js"],
 		["simplehack/", "simplehack-template.js"],
 		["loophack/", "grow_loop.js"],
