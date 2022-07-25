@@ -17,8 +17,8 @@ export async function main(ns) {
 	//assume, target is already nuked
 	
 	//initial loop to generate some early-game income
-	//hack server to 1% money
-	while ((isFaction == false) && (ns.getServerMoneyAvailable(target) > ns.getServerMaxMoney(target) * 0.01)) {
+	//hack server to 1% money, but avoid server getting too strong. If server starts out too strong, this should not trigger at all.
+	while ((isFaction == false) && (ns.getServerMoneyAvailable(target) > ns.getServerMaxMoney(target) * 0.01) && (ns.getServerSecurityLevel(target) < ns.getServerMinSecurityLevel(target) + 10)) {
 		await ns.hack(target);
 	}
 
