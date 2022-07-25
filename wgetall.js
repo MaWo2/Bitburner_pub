@@ -10,6 +10,7 @@ export async function main(ns) {
 	//will be pulled into the same folder structure
 	filesToPull = [
 		["", "monitor.js"],
+		["", "n-monitor.js"],
 		["", "purchaseServer8GB.js"],
 		["", "scpToWorld.js"],
 		["", "selfHackWorld.js"],
