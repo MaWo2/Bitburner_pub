@@ -5,6 +5,12 @@ export async function main(ns) {
 	var target = ns.getHostname();
 	var securityThreshold = 1; //e.g. 1
 	var moneyThreshold = 0.9; //e.g. 0.9
+	//list of faction servers, because those cannot be hacked (money = 0)
+	//if server is faction server, switch target to harakiri-sushi
+	var factionServers = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "." ,"The-Cave", "w0r1d_d43m0n"];
+	if (factionServers.includes(target)) {
+		target = "harakiri-sushi";
+	}
 	
 	//assume, target is already nuked
 
