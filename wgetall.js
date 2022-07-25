@@ -12,6 +12,7 @@ export async function main(ns) {
 		["", "monitor.js"],
 		["", "n-monitor.js"],
 		["", "purchaseServer8GB.js"],
+		["", "upgrade-server.js"],
 		["", "scpToWorld.js"],
 		["", "selfHackWorld.js"],
 		["", "worldcracker.js"],
