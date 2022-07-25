@@ -9,10 +9,10 @@ export async function main(ns) {
 	//assume, target is already nuked
 
 	while (true) {
-		if (ns.getServerSecurityLevel > ns.getServerMinSecurityLevel + securityThreshold) {
+		if (ns.getServerSecurityLevel(target) > ns.getServerMinSecurityLevel(target) + securityThreshold) {
 			//if server security is too high --> weaken
 			await ns.weaken(target);
-		} else if (ns.getServerMoneyAvailable > ns.getServerMaxMoney * moneyThreshold) {
+		} else if (ns.getServerMoneyAvailable(target) < ns.getServerMaxMoney(target) * moneyThreshold) {
 			//if server has too little money --> grow
 			await ns.grow(target);
 		} else {
