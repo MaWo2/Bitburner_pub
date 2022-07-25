@@ -18,7 +18,9 @@ export async function main(ns) {
 	
 	//initial loop to generate some early-game income
 	//hack server to 1% money, but avoid server getting too strong. If server starts out too strong, this should not trigger at all.
-	while ((isFaction == false) && (ns.getServerMoneyAvailable(target) > ns.getServerMaxMoney(target) * 0.01) && (ns.getServerSecurityLevel(target) < ns.getServerMinSecurityLevel(target) + 10)) {
+	//initial setting for server is 4% money. If more than 5% available, assume this script was (re-)started later in the game.
+	//don't do the initial hack then
+	while ((isFaction == false) && (ns.getServerMoneyAvailable(target) < ns.getServerMaxMoney(target) * 0.05) && (ns.getServerMoneyAvailable(target) > ns.getServerMaxMoney(target) * 0.01) && (ns.getServerSecurityLevel(target) < ns.getServerMinSecurityLevel(target) + 10)) {
 		await ns.hack(target);
 	}
 
