@@ -12,12 +12,12 @@
 // Formerly named 6a_DEV
 
 /**
- * This is a version of the actual hwgw-queen-script, that's intended for use on weak systems (like a tablet).
- * On such systems, the HWGW-batches do not finish in proper order and every second cycle is a "repair"-cycle (no hacking).
- * The idea is to time the scripts not relatively, but with a fixed delay.
- * Accordingly, the batch offset is different and the amount of dispatchable batches needs to be calculated differently.
+ * This is a tweaked version of the original script.
+ * It massively overgrows and overweakens, to increase the amount of necessary RAM.
+ * This limits the number of dispatchable batches and thereby prolonges the time between scripts finishing.
+ * It is intended to run on weaker systems (like tablets).
+ * However, the original script seems to be more efficient, although only every second batch actually hacks.
  */
-
 
 /**
  * Script to perform HWGW hacking on a specified target
@@ -38,8 +38,6 @@ export async function main(ns) {
 	const hackScript = "/batchhack/b-hack.js";
 	const growScript = "/batchhack/b-grow.js";
 	const weakenScript = "/batchhack/b-weaken.js";
-	const scriptOffsetTimeWeak = 500;
-	const batchOffsetTimeWeak = 4 * scriptOffsetTimeWeak
 
 	var hackPortion; // Not sure, if we want this; Could be used later to prepare for less powerful getServerSecurityLevel
 
@@ -158,14 +156,13 @@ export async function main(ns) {
 	targetGrowBackFactor = 1 / (1 - hackPortion); //--> this could be improved to match the actual hack. But therefore I need the current value. Other option: Make sure to only hack to 50% total (not 50% of current value). If negative count --> 0;
 	hackThreads = Math.floor(ns.hackAnalyzeThreads(target, targetMaxMoney * hackPortion)); //1GB RAM //Math.floor --> rather hack a little less, than not being able to properly grow back
 	targetHackSecIncr = hackThreads * 0.002;
-	growThreads = Math.ceil(ns.growthAnalyze(target, targetGrowBackFactor))*1.0;
+	growThreads = Math.ceil(ns.growthAnalyze(target, targetGrowBackFactor))*3.0;
 	//targetGrowSecIncr = ns.growthAnalyzeSecurity(growThreads, target, 1);
 	targetGrowSecIncr = growThreads * 0.004
-	weakenThreadsH = Math.ceil(targetHackSecIncr / targetWeakenSecDec)*1.0;
-	weakenThreadsG = Math.ceil(targetGrowSecIncr / targetWeakenSecDec)*1.0;
+	weakenThreadsH = Math.ceil(targetHackSecIncr / targetWeakenSecDec)*2.0;
+	weakenThreadsG = Math.ceil(targetGrowSecIncr / targetWeakenSecDec)*2.0;
 	totalBatchRAM = (hackThreads * hackRAM) + (growThreads * growRAM) + ((weakenThreadsH + weakenThreadsG) * weakenRAM);
 	maxBatchCount = Math.floor(availHostRAM / totalBatchRAM); // only used half of the available RAM so far
-	var maxBatchCountWeak;
 
 	//update values
 	availHostRAM = maxHostRAM - ns.getServerUsedRam(attackHost);
@@ -181,15 +178,6 @@ export async function main(ns) {
 		targetWeakenTime = ns.getWeakenTime(target); //could have changed already
 		targetGrowTime = ns.getGrowTime(target); //could have changed already
 		targetHackTime = ns.getHackTime(target); //could have changed already
-
-		//calculate how many slow cycles can be fitted into one hacking time
-		//if this is less than the maxBatchCount, use this number instead
-
-		if (Math.floor(targetHackTime / batchOffsetTimeWeak) < maxBatchCount) {
-			maxBatchCountWeak = Math.floor(targetHackTime / batchOffsetTimeWeak);
-		} else {
-			maxBatchCountWeak = maxBatchCount;
-		}
 		
 		//order of finishing is H-W-G-W
 		//order of dispatching or script-starting is W-W-G-H
@@ -198,7 +186,7 @@ export async function main(ns) {
 		if (maxBatchCount == 1) {
 			batchOffsetTime = 2000; // no need to wait much longer
 		} else {
-			batchOffsetTime = (targetHackTime / maxBatchCountWeak); //dispatch batches over the time of 1 hack only (not 1 weaken) to make sure, they all start at optimum conditions
+			batchOffsetTime = (targetHackTime / maxBatchCount); //dispatch batches over the time of 1 hack only (not 1 weaken) to make sure, they all start at optimum conditions
 		}
 		scriptOffsetTime = batchOffsetTime / 4
 		w1Sleep = 0;
@@ -216,10 +204,10 @@ export async function main(ns) {
 			ns.exec(growScript, attackHost, growThreads, gSleep + individualOffset, target, loopCounter);
 			ns.exec(hackScript, attackHost, hackThreads, hSleep + individualOffset, target, loopCounter);
 				
-			if (batchCounter < maxBatchCountWeak - 1) {
+			if (batchCounter < maxBatchCount - 1) {
 				batchCounter++;
 			} else {
-				await ns.sleep(targetWeakenTime + (batchOffsetTime * maxBatchCountWeak) + 1000); // sleep until all scripts finished
+				await ns.sleep(targetWeakenTime + (batchOffsetTime * maxBatchCount) + 1000); // sleep until all scripts finished
 				batchCounter = 0;
 			}
 		} else {
