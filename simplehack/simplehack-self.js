@@ -10,7 +10,7 @@ export async function main(ns) {
 	//if server is faction server, switch target to harakiri-sushi
 	var factionServers = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "." ,"The-Cave", "w0r1d_d43m0n"];
 	if (factionServers.includes(target)) {
-		target = "harakiri-sushi";
+		target = "joesguns";
 		isFaction = true;
 	}
 	
