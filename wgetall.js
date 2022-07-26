@@ -29,6 +29,7 @@ export async function main(ns) {
 		["loophack/", "loop-queen-pserv.js"],
 		["loophack/", "loop-queen-outside.js"],
 		["batchhack/", "hwgw-queen.js"],
+		["batchhack/", "hwgw-queen-weak.js"],
 		["batchhack/", "b-grow.js"],
 		["batchhack/", "b-hack.js"],
 		["batchhack/", "b-weaken.js"],
