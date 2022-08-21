@@ -18,7 +18,7 @@ export async function main(ns) {
 			//4. increment iterator
 			
 			var hostname = ns.purchaseServer(baseName + i, ram);
-			await ns.scp(attackScript, "home", hostname);
+			await ns.scp(attackScript, hostname, "home");
 			ns.exec(attackScript, hostname, 3, target, secThresh, moneyThresh);
 			i++;
 		}
