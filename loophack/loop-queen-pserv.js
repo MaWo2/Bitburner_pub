@@ -114,7 +114,7 @@ export async function main(ns) {
 	while (currentSecurityLevel > (minimalSecurityLevel + 0.5)) {
 		// check if drone is already running a weaken script
 		// if not start it
-		ns.tprint("server needs to be weakened again");
+		//ns.tprint("server needs to be weakened again");
 		for (let i = 0; i < droneServers.length; i++) {
 			if (! ns.isRunning("/loophack/weaken_once.js", droneServers[i], targetName)) {
 				ns.exec("/loophack/weaken_once.js", droneServers[i], 4, targetName);
