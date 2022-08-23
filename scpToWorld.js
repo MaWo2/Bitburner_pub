@@ -11,8 +11,8 @@ export async function main(ns) {
 	for (let i = 0; i < target.length; i++) {
 		//copy files to servers
 		for (let j = 0; j < foldersToCopy.length; j++) {
-			await ns.scp(ns.ls("home", foldersToCopy[j]), target[i]);
+			await ns.scp(ns.ls("home", foldersToCopy[j]), target[i], "home");
 		}
-		await ns.scp(filesToCopy, target[i]);
+		await ns.scp(filesToCopy, target[i], "home");
 	}	
 }
