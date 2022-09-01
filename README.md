@@ -1,5 +1,5 @@
 # My repository for Bitburner scripts
-2022-07-25
+2022-09-01
 
 ## Disclaimer
 This repository is just here to help me play the Bitburner game (https://github.com/danielyxie/bitburner). I especially use it to get scripts I developed in one game into a "fresh" instance of the game. It is a public repository, because at the time of writing it is not possible to use 'wget' inside bitburner with private github repositories.
