@@ -1,8 +1,12 @@
 /** @param {NS} ns */
 export async function main(ns) {
 	var target = ns.args[0];
-	var securityThreshold = ns.args[1]; //e.g. 1
-	var moneyThreshold = ns.args[2]; //e.g. 0.9
+	//I usually forget to supply these values...
+	//let's hardcode them
+	//var securityThreshold = ns.args[1]; //e.g. 1
+	//var moneyThreshold = ns.args[2]; //e.g. 0.9
+	var securityThreshold = 1
+	var moneyThreshold = 0.9
 	
 	//assume, target is already nuked
 
