@@ -16,4 +16,12 @@ export async function main(ns) {
 		ns.deleteServer(serverToUpgrade);
 		ns.purchaseServer(serverToUpgrade, upgradeToRAM);
 	}
+	
+	//copy files to new servers
+	var foldersToCopy = ["/simplehack", "/batchhack", "/loophack"];
+	var filesToCopy = ["monitor.js", "n-monitor.js", "purchaseServer8GB.js", "connect-to.js"];
+	for (let j = 0; j < foldersToCopy.length; j++) {
+		await ns.scp(ns.ls("home", foldersToCopy[j]), serverToUpgrade, "home");
+	}
+	await ns.scp(filesToCopy, serverToUpgrade, "home");
 }
