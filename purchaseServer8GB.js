@@ -26,6 +26,6 @@ export async function main(ns) {
 		await ns.sleep(5000);
 	}
 	//Once we got all servers we could buy, we start loop-hacking on them.
-	ns.spawn(loopQueenScript, 1, "joesguns");
+	ns.spawn(loopQueenScript, 1, target);
 
 }
