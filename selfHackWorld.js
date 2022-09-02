@@ -13,11 +13,14 @@ export async function main(ns) {
 	var scriptRAM2 = ns.getScriptRam(attackScript2);
 	for (let i = 0; i < target.length; i++) {
 		if (ns.getServerRequiredHackingLevel(target[i]) <= playerHackingLevel) {
+			//kill possibly running hacking templates
+			ns.scriptKill(attackScript2, target[i]);
 			var maxThreads = Math.floor((ns.getServerMaxRam(target[i]) - ns.getServerUsedRam(target[i])) / scriptRAM);
 			if (maxThreads > 0) {
 				ns.exec(attackScript, target[i], maxThreads);
 			}
 		} else {
+			//if hacking level not high enough, but root access available, hack joesguns
 			if (ns.hasRootAccess(target[i])) {
 				var maxThreads = Math.floor((ns.getServerMaxRam(target[i]) - ns.getServerUsedRam(target[i])) / scriptRAM2);
 				if (maxThreads > 0) {
