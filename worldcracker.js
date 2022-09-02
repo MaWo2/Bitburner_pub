@@ -5,6 +5,7 @@
  */
 export async function main(ns) {
 	var target = [];
+	var waitTime = 50;
 
 	//check, if argument was provided
 	//if so, crack that server
@@ -35,27 +36,27 @@ export async function main(ns) {
 		if (ns.fileExists("BruteSSH.exe", "home")) {
 			ns.brutessh(target[i]);
 			openPorts++;
-			await ns.sleep(200);
+			await ns.sleep(waitTime);
 		}
 		if (ns.fileExists("FTPCrack.exe", "home")) {
 			ns.ftpcrack(target[i]);
 			openPorts++;
-			await ns.sleep(200);
+			await ns.sleep(waitTime);
 		}
 		if (ns.fileExists("relaySMTP.exe", "home")) {
 			ns.relaysmtp(target[i]);
 			openPorts++;
-			await ns.sleep(200);
+			await ns.sleep(waitTime);
 		}
 		if (ns.fileExists("HTTPWorm.exe", "home")) {
 			ns.httpworm(target[i]);
 			openPorts++;
-			await ns.sleep(200);
+			await ns.sleep(waitTime);
 		}
 		if (ns.fileExists("SQLInject.exe", "home")) {
 			ns.sqlinject(target[i]);
 			openPorts++;
-			await ns.sleep(200);
+			await ns.sleep(waitTime);
 		}
 
 		//try to nuke the target
