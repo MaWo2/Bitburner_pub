@@ -41,7 +41,7 @@ export async function main(ns) {
 			//start HWGW-attack on newly upgraded server
 			ns.exec("/batchhack/hwgw-queen.js", hostList[i], 1, targetList[i], 50);
 			//stop self-hacking scripts on target servers, because the block HWGW attacks
-			ns.scriptkill("/simplehack/simplehack-self.js", targetList[i]);
+			ns.scriptKill("/simplehack/simplehack-self.js", targetList[i]);
 			//increment counter
 			i++;
 		}
