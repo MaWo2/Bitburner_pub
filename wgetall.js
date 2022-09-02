@@ -20,6 +20,7 @@ export async function main(ns) {
 		["", "folder-scp.js"],
 		["", "connect-to.js"],
 		["", "stopworld.js"],
+		["", "endgame-starter.js"],
 		["simplehack/", "simplehack-self.js"],
 		["simplehack/", "simplehack-template.js"],
 		["loophack/", "grow_loop.js"],
