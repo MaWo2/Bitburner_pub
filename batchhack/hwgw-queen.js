@@ -80,6 +80,9 @@ export async function main(ns) {
 	var maxThreads;
 	var neededThreads;
 
+	//stop self-hacking scripts on target server
+	ns.scriptKill("/simplehack/simplehack-self.js", target);
+
 	//prepare target
 	//Currently, I weaken to minimum first and then grow.
 	//Assuming, this script runs on a server with enough recourses, it could just start with growing, although Sec is not min.
