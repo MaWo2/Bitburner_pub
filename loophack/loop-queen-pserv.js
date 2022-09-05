@@ -31,9 +31,12 @@ export async function main(ns) {
 	// prepare list of drone servers
 	// prepare for future changes
 	// calling ns.getPurchasedServers costs 2.25 GB RAM
+	droneServers = ns.getPurchasedServers();
+	/**
 	for (let i = 0; i < 25; i++) {
 		droneServers.push("pserv-" + i);
 	}
+	*/
 	//ns.tprint(droneServers);
 
 	// prepare drones --> stopp all scripts on drones
