@@ -15,7 +15,7 @@ export async function main(ns) {
 	for (let i = 0; i < target.length; i++) {
 		if (ns.getServerRequiredHackingLevel(target[i]) <= playerHackingLevel) {
 			//check, if this server is possibly attacked by a HWGW script. If so, don't hack self, because then HWGW does not earn properly.
-			if (batchHackTargets.includes(target)) {
+			if (batchHackTargets.includes(target[i])) {
 				if (ns.hasRootAccess(target[i])) {
 					var maxThreads = Math.floor((ns.getServerMaxRam(target[i]) - ns.getServerUsedRam(target[i])) / scriptRAM2);
 					if (maxThreads > 0) {
