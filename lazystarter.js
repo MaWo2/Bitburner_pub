@@ -23,4 +23,5 @@ export async function main(ns) {
 		await ns.sleep(5000);
 	}
 	ns.tprint("LazyStarter done running. Enjoy!");
+	ns.spawn("selfHackWorld.js", 1); //call the script again, because in endgame situation worldcracker is not finished before selfhack starts
 }
