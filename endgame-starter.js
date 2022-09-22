@@ -11,16 +11,28 @@
 /** @param {NS} ns */
 export async function main(ns) {
 	var targetList = ["harakiri-sushi", "foodnstuff", "iron-gym"];
-	var hostList = ["pserv-0", "pserv-1", "pserv-2"];
+	var hostList = []; // initialise as empty array
 	var ram = 16384;
 	var waitTime = 200;
+	var pservCounter = 0;
 
 	// if home is strong enough, use it, because it has more power than other servers
 	if (ns.getServerMaxRam("home") >= 16384) {
 		ns.exec("/batchhack/hwgw-queen.js", "home", 1, "the-hub", 50);
 	} else {
-		hostList.push("pserv-3");
+		// if not --> push target to target list and add one more
 		targetList.push("the-hub");
+	}
+	
+	// fill list of attack servers
+	// we need as many servers, as items in the target list
+	// use pserv's from end of the list, because the low index servers might have different scripts running
+	var index;
+	var pservList = ns.getPurchasedServers();
+	pservCounter = targetList.length;
+	for (let i = 0; i < pservCounter; i++) {
+		index = pservList.length - i;
+		hostList.push("pserv-" + index);
 	}
 
 	var i = 0;
