@@ -23,7 +23,7 @@ export async function main(ns) {
 			i++;
 		}
 		//wait some time to prevent strange names, if script is started with enough money to buy several servers
-		await ns.sleep(5000);
+		await ns.sleep(1000);
 	}
 	//Once we got all servers we could buy, we start loop-hacking on them.
 	ns.spawn(loopQueenScript, 1, target);
