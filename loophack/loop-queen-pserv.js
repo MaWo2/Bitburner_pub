@@ -82,6 +82,7 @@ export async function main(ns) {
 	}
 
 	// grow server to maximum, counter with weaken 10:2 --> 25 servers 21 for growing, 4 to weaken
+	// on BN 10 we only have 15 player servers; I'll stick with 4x weaken, although it possibly overweakens.
 	while (currentMoney <= (maximalMoney * 0.95)) {
 		//ns.tprint(currentMoney/maximalMoney);
 		// check if drone is already running a grow/weaken script
@@ -94,8 +95,8 @@ export async function main(ns) {
 		}
 
 		for (let i = 0; i < 4; i++) {
-			if (! ns.isRunning("/loophack/weaken_once.js", droneServers[21+i], targetName)) {
-				ns.exec("/loophack/weaken_once.js", droneServers[21+i], 4, targetName);
+			if (! ns.isRunning("/loophack/weaken_once.js", droneServers[droneServers.length - 4 + i], targetName)) {
+				ns.exec("/loophack/weaken_once.js", droneServers[droneServers.length - 4 + i], 4, targetName);
 			}
 		}
 		await ns.sleep(1000); // wait a little bit
@@ -138,7 +139,13 @@ export async function main(ns) {
 	}
 
 	// start loop hacking algorithm
-	// 2 servers hack, 19 grow, 4 weaken
+	// adjust endgame-starter-script to use servers at end of array
+	// 2 servers hack, 4 weaken, 19 grow (changed the order)
+	// BN 10: 1 hack, 3 weaken, 11 grow
+	// index 0 --> always hack
+	// index 1 --> switch to growing, if < 25 servers available
+	// indices 2, 3, 4 --> always weaken
+	// index 5 --> switch to growing, if < 25 servers available
 	// ns.tprint("server would be attacked now");
 	for (let i = 0; i < droneServers.length; i++) {
 		switch (i) {
@@ -146,19 +153,29 @@ export async function main(ns) {
 				ns.exec("/loophack/hack_loop.js", droneServers[i], 4, targetName);
 				break;
 			case 1:
-				ns.exec("/loophack/hack_loop.js", droneServers[i], 4, targetName);
+				if (droneServers.length < 25) {
+					// use default action
+					ns.exec("/loophack/grow_loop.js", droneServers[i], 4, targetName);
+				} else {
+					ns.exec("/loophack/hack_loop.js", droneServers[i], 4, targetName);
+				}
 				break;
-			case 21:
+			case 2:
 				ns.exec("/loophack/weaken_loop.js", droneServers[i], 4, targetName);
 				break;
-			case 22:
+			case 3:
 				ns.exec("/loophack/weaken_loop.js", droneServers[i], 4, targetName);
 				break;
-			case 23:
+			case 4:
 				ns.exec("/loophack/weaken_loop.js", droneServers[i], 4, targetName);
 				break;
-			case 24:
-				ns.exec("/loophack/weaken_loop.js", droneServers[i], 4, targetName);
+			case 5:
+				if (droneServers.length < 25) {
+					// use default action
+					ns.exec("/loophack/grow_loop.js", droneServers[i], 4, targetName);
+				} else {
+					ns.exec("/loophack/weaken_loop.js", droneServers[i], 4, targetName);
+				}
 				break;
 			default:
 				ns.exec("/loophack/grow_loop.js", droneServers[i], 4, targetName);
