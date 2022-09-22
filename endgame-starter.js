@@ -44,11 +44,8 @@ export async function main(ns) {
 			await ns.sleep(waitTime);
 			//restart loop-hacking
 			//restarting the loop queen on home kills all running scripts on pserv's --> including already running HWGW-attacks
-			if (i < 2) {
-				ns.exec("/loophack/hack_loop.js", hostList[i], 4, "joesguns");
-			} else {
-				ns.exec("/loophack/grow_loop.js", hostList[i], 4, "joesguns");
-			}
+			ns.exec("/loophack/grow_loop.js", hostList[i], 4, "joesguns");
+			
 			await ns.sleep(waitTime);
 			//start HWGW-attack on newly upgraded server
 			ns.exec("/batchhack/hwgw-queen.js", hostList[i], 1, targetList[i], 50);
