@@ -30,7 +30,7 @@ export async function main(ns) {
 	var index;
 	var pservList = ns.getPurchasedServers();
 	pservCounter = targetList.length;
-	for (let i = 0; i < pservCounter; i++) {
+	for (let i = 1; i <= pservCounter; i++) {
 		index = pservList.length - i;
 		hostList.push("pserv-" + index);
 	}
