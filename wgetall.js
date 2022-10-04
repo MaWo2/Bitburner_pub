@@ -38,7 +38,8 @@ export async function main(ns) {
 		["batchhack/", "b-hack.js"],
 		["batchhack/", "b-weaken.js"],
 		["data-mining/", "world-profiler.js"],
-		["data-mining/", "func_world-scanner.js"]
+		["data-mining/", "func_world-scanner.js"],
+		["corp/", "product-maintenance.js"]
 	]
 
 	//Pull them
