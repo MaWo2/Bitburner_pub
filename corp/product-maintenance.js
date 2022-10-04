@@ -33,7 +33,7 @@ export async function main(ns) {
 
 		//wait some time
 		//hireAvert, if possible
-		await ns.sleep(4000);
+		await ns.sleep(30000);
 		if (ns.corporation.getCorporation().funds >= ns.corporation.getHireAdVertCost(divName)) {
 			ns.corporation.hireAdVert(divName);
 		}
