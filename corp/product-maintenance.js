@@ -12,13 +12,14 @@ export async function main(ns) {
 
 		//collect product ratings
 		//it would be better to use the actual selling price of a product
-		//however, this value is not exposed
+		//however, this value is not exposed (yet)
 		var prodRatings = [];
 		for (let i = 0; i < prodNames.length; i++) {
 			prodRatings.push(ns.corporation.getProduct(divName, prodNames[i]).rat);
 		}
 
 		//discontinue least rated product
+		//the "..." means that the values are handed one after the other to the Math.min function
 		var leastRatedProd = prodRatings.indexOf(Math.min(...prodRatings));
 		ns.corporation.discontinueProduct(divName, prodNames[leastRatedProd]);
 
