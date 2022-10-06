@@ -40,7 +40,8 @@ export async function main(ns) {
 		["data-mining/", "world-profiler.js"],
 		["data-mining/", "func_world-scanner.js"],
 		["corp/", "product-maintenance.js"],
-		["corp/", "office-upgrade.js"]
+		["corp/", "office-upgrade.js"],
+		["sleeves/", "study-all.js"]
 	]
 
 	//Pull them
