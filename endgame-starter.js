@@ -11,6 +11,7 @@
 /** @param {NS} ns */
 export async function main(ns) {
 	var targetList = ["harakiri-sushi", "foodnstuff", "iron-gym"];
+	var threadList = [50, 25, 50]; //initially, foodnstuff cannot be attacked to 50%; needs several augs
 	var hostList = []; // initialise as empty array
 	var ram = 16384;
 	var waitTime = 200;
@@ -22,6 +23,7 @@ export async function main(ns) {
 	} else {
 		// if not --> push target to target list and add one more
 		targetList.push("the-hub");
+		threadList.push(50);
 	}
 	
 	// fill list of attack servers
@@ -48,7 +50,7 @@ export async function main(ns) {
 			
 			await ns.sleep(waitTime);
 			//start HWGW-attack on newly upgraded server
-			ns.exec("/batchhack/hwgw-queen.js", hostList[i], 1, targetList[i], 50);
+			ns.exec("/batchhack/hwgw-queen.js", hostList[i], 1, targetList[i], threadList[i]);
 			//stop self-hacking scripts on target servers, because the block HWGW attacks
 			ns.scriptKill("/simplehack/simplehack-self.js", targetList[i]);
 			//increment counter
