@@ -41,6 +41,8 @@ export async function main(ns) {
 		["data-mining/", "func_world-scanner.js"],
 		["corp/", "product-maintenance.js"],
 		["corp/", "office-upgrade.js"],
+		["corp/", "corp-starter.js"],
+		["corp/", "corp-init-products.js"],
 		["sleeves/", "study-all.js"]
 	]
 
