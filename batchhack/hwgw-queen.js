@@ -54,7 +54,8 @@ export async function main(ns) {
 	const hackRAM = ns.getScriptRam(hackScript);
 	const growRAM = ns.getScriptRam(growScript);
 	const weakenRAM = ns.getScriptRam(weakenScript);
-	var availHostRAM = maxHostRAM - queenRAM; // available RAM on host, while queen is running
+	//var availHostRAM = maxHostRAM - queenRAM; // available RAM on host, while queen is running --> outdated, because other scripts might be running
+	var availHostRAM = maxHostRAM - ns.getServerUsedRam(attackHost);
 	
 	//get target stats
 	var targetMaxMoney = ns.getServerMaxMoney(target); //0.1 GB
