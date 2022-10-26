@@ -10,20 +10,20 @@
 
 /** @param {NS} ns */
 export async function main(ns) {
-	var targetList = ["harakiri-sushi", "foodnstuff", "iron-gym"];
-	var threadList = [50, 25, 50]; //initially, foodnstuff cannot be attacked to 50%; needs several augs
+	var targetList = ["harakiri-sushi", "iron-gym", "the-hub"]; //changed order: fns generates most hacking exp, which makes hacking of other servers easier --> try attacking it on home
+	var threadList = [50, 50, 50]; 
 	var hostList = []; // initialise as empty array
 	var ram = 16384;
 	var waitTime = 200;
 	var pservCounter = 0;
 
-	// if home is strong enough, use it, because it has more power than other servers
+	// if home is strong enough, use it; it has more power than other servers
 	if (ns.getServerMaxRam("home") >= 16384) {
-		ns.exec("/batchhack/hwgw-queen.js", "home", 1, "the-hub", 50);
+		ns.exec("/batchhack/hwgw-queen.js", "home", 1, "foodnstuff", 25);
 	} else {
 		// if not --> push target to target list and add one more
-		targetList.push("the-hub");
-		threadList.push(50);
+		targetList.unshift("foodnstuff");
+		threadList.unshift(25); //initially, foodnstuff needs to many threads to be attacked to 50%; needs several augs
 	}
 	
 	// fill list of attack servers
