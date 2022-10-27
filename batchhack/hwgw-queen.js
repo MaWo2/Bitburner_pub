@@ -34,7 +34,7 @@ export async function main(ns) {
 	var hackPortion; // Not sure, if we want this; Could be used later to prepare for less powerful getServerSecurityLevel
 
 	//check if all parameters where provided
-	switch(ns.args.length) {
+	switch (ns.args.length) {
 		case 0:
 			ns.tprint("ERROR: No target to hack defined!");
 			break;
@@ -43,7 +43,7 @@ export async function main(ns) {
 			hackPortion = 0.1;
 			break;
 		default:
-			hackPortion = ns.args[1]/100;
+			hackPortion = ns.args[1] / 100;
 			// it might be necessary to check if the value is larger than 100, to prevent hacking to 0 (grow will take very long then)
 			ns.tprint(`Will attack ${target}, trying to steal ${hackPortion * 100}% per cycle.`);
 	}
@@ -56,7 +56,7 @@ export async function main(ns) {
 	const weakenRAM = ns.getScriptRam(weakenScript);
 	//var availHostRAM = maxHostRAM - queenRAM; // available RAM on host, while queen is running --> outdated, because other scripts might be running
 	var availHostRAM = maxHostRAM - ns.getServerUsedRam(attackHost);
-	
+
 	//get target stats
 	var targetMaxMoney = ns.getServerMaxMoney(target); //0.1 GB
 	var targetCurrMoney = ns.getServerMoneyAvailable(target); //0.1
@@ -69,7 +69,7 @@ export async function main(ns) {
 	var targetHackTime = ns.getHackTime(target); //0.05 GB
 	var targetGrowTime = ns.getGrowTime(target); //0.05 GB
 	var targetWeakenTime = ns.getWeakenTime(target); //0.05 GB;
-	
+
 	//get player stats --> not yet; necessary for formulas.exe
 
 	//variables for the batching
@@ -143,7 +143,7 @@ export async function main(ns) {
 	var batchCounter = 0;
 	var individualOffset;
 
-	
+
 	//While in the loop, every once in a while this was calculated, while server sec is not at min.
 	//--> too many hacking threads are calculated/dispatched, but not matched by later grow
 	//assume: Only time changes, but not the other parameters
@@ -152,11 +152,11 @@ export async function main(ns) {
 	targetGrowBackFactor = 1 / (1 - hackPortion); //--> this could be improved to match the actual hack. But therefore I need the current value. Other option: Make sure to only hack to 50% total (not 50% of current value). If negative count --> 0;
 	hackThreads = Math.floor(ns.hackAnalyzeThreads(target, targetMaxMoney * hackPortion)); //1GB RAM //Math.floor --> rather hack a little less, than not being able to properly grow back
 	targetHackSecIncr = hackThreads * 0.002;
-	growThreads = Math.ceil(ns.growthAnalyze(target, targetGrowBackFactor))*1.0;
+	growThreads = Math.ceil(ns.growthAnalyze(target, targetGrowBackFactor)) * 1.0;
 	//targetGrowSecIncr = ns.growthAnalyzeSecurity(growThreads, target, 1);
 	targetGrowSecIncr = growThreads * 0.004
-	weakenThreadsH = Math.ceil(targetHackSecIncr / targetWeakenSecDec)*1.0;
-	weakenThreadsG = Math.ceil(targetGrowSecIncr / targetWeakenSecDec)*1.0;
+	weakenThreadsH = Math.ceil(targetHackSecIncr / targetWeakenSecDec) * 1.0;
+	weakenThreadsG = Math.ceil(targetGrowSecIncr / targetWeakenSecDec) * 1.0;
 	totalBatchRAM = (hackThreads * hackRAM) + (growThreads * growRAM) + ((weakenThreadsH + weakenThreadsG) * weakenRAM);
 	maxBatchCount = Math.floor(availHostRAM / totalBatchRAM); // only used half of the available RAM so far
 
@@ -165,16 +165,16 @@ export async function main(ns) {
 	targetWeakenTime = ns.getWeakenTime(target); //could have changed already
 	targetGrowTime = ns.getGrowTime(target); //could have changed already
 	targetHackTime = ns.getHackTime(target); //could have changed already
-	
+
 
 	while (true) {
-		
+
 		//update values
 		availHostRAM = maxHostRAM - ns.getServerUsedRam(attackHost);
 		targetWeakenTime = ns.getWeakenTime(target); //could have changed already
 		targetGrowTime = ns.getGrowTime(target); //could have changed already
 		targetHackTime = ns.getHackTime(target); //could have changed already
-		
+
 		//order of finishing is H-W-G-W
 		//order of dispatching or script-starting is W-W-G-H
 		//time the scripts
@@ -192,22 +192,25 @@ export async function main(ns) {
 
 		//check if RAM is available to dispatch a batch or several batches
 		if (availHostRAM > totalBatchRAM) {
-			
+
 			loopCounter++; //increment loop counter; used to "distinguish" the scripts from each other. Otherwise, game will not allow two scripts with the same parameters.
 			individualOffset = batchCounter * batchOffsetTime;
 			ns.exec(weakenScript, attackHost, weakenThreadsH, w1Sleep + individualOffset, target, loopCounter);
 			ns.exec(weakenScript, attackHost, weakenThreadsG, w2Sleep + individualOffset, target, loopCounter);
 			ns.exec(growScript, attackHost, growThreads, gSleep + individualOffset, target, loopCounter);
-			ns.exec(hackScript, attackHost, hackThreads, hSleep + individualOffset, target, loopCounter);
-				
+			//ns.exec(hackScript, attackHost, hackThreads, hSleep + individualOffset, target, loopCounter);
+			
 			if (batchCounter < maxBatchCount - 1) {
+				//do not dispatch hack in last batch
+				//trying to reduce out-of sync effects
+				ns.exec(hackScript, attackHost, hackThreads, hSleep + individualOffset, target, loopCounter);
 				batchCounter++;
 			} else {
 				await ns.sleep(targetWeakenTime + (batchOffsetTime * maxBatchCount) + 1000); // sleep until all scripts finished
 				batchCounter = 0;
 			}
 		} else {
-			await ns.sleep(1000);		
+			await ns.sleep(1000);
 		}
 	}
 }
