@@ -41,6 +41,12 @@ export async function main(ns) {
 	while (i < targetList.length) {
 		//check, if we have enough money to buy a new server
 		if (ns.getServerMoneyAvailable("home") >= ns.getPurchasedServerCost(ram)) {
+			//check, if server was already upgraded
+			if (ns.getServerMaxRam(hostList[i]) >= 16384) {
+				//increment counter and get out of loop
+				i++
+				continue;
+			}
 			//upgrade server
 			ns.exec("upgrade-server.js", "home", 1, hostList[i], ram);
 			await ns.sleep(waitTime);
