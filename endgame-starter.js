@@ -10,8 +10,8 @@
 
 /** @param {NS} ns */
 export async function main(ns) {
-	var targetList = ["harakiri-sushi", "iron-gym", "the-hub"]; //changed order: fns generates most hacking exp, which makes hacking of other servers easier --> try attacking it on home
-	var threadList = [50, 50, 50]; 
+	var targetList = ["harakiri-sushi", "iron-gym", "the-hub", "sigma-cosmetics", "hong-fang-tea", "zer0", "nectar-net", "max-hardware", "neo-net"]; //changed order: fns generates most hacking exp, which makes hacking of other servers easier --> try attacking it on home
+	var threadList = [50, 50, 50, 50, 50, 50, 50, 50, 50]; 
 	var hostList = []; // initialise as empty array
 	var ram = 16384;
 	var waitTime = 200;
