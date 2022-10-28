@@ -183,6 +183,9 @@ export async function main(ns) {
 
 		
 	}
-
+	
+	//start endgamestarter on home to upgrade servers and start HWGW attacks
+	ns.exec("endgame-starter.js", "home");
+	ns.tprint("Loop-hacking in progress. Endgame server upgrades started on home.");
 
 }
