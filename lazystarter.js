@@ -6,6 +6,7 @@
  */
 export async function main(ns) {
 	var filesToExecute = [
+		"/sleeves/sleeve-starter.js",
 		"/data-mining/world-profiler.js",
 		"scpToWorld.js",
 		"worldcracker.js",
