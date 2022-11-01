@@ -24,8 +24,8 @@ export async function main(ns) {
 		//problem: All solutions on the web suggest to convert the array to a list. However, this does not seem to be possible.
 		//I'll just iterate over the factions and copy them to another array
 		for (var faction in pFactions) {
-			if (faction != gangName) {
-				sFactions.push(faction);
+			if (pFactions[faction] != gangName) {
+				sFactions.push(pFactions[faction]);
 			}
 		}
 	}
@@ -39,7 +39,7 @@ export async function main(ns) {
 
 
 
-	//ns.tprint(factions);
+	//ns.tprint(sFactions);
 	//ns.tprint(factionsAvailable);
 
 	//create list of tasks
