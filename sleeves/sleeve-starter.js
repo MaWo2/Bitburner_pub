@@ -48,7 +48,7 @@ export async function main(ns) {
 	for (let i = 0; i < 6; i++) {
 		if (i < 4) {
 			//check if factions are available
-			if (i <= sFactions.length) {
+			if (i < sFactions.length) {
 				taskList.push("Faction");
 			} else {
 				taskList.push("University");
