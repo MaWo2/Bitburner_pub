@@ -30,15 +30,10 @@ export async function main(ns) {
 		}
 	}
 
-
-
 	//check, if factions are available
 	if (sFactions.length > 0) {
 		factionsAvailable = true;
 	}
-
-
-
 	//ns.tprint(sFactions);
 	//ns.tprint(factionsAvailable);
 
@@ -59,6 +54,7 @@ export async function main(ns) {
 	}
 	//ns.tprint(taskList);
 
+	//assign tasks
 	for (let i = 0; i < taskList.length; i++) {
 		switch (taskList[i]) {
 			case "Faction":
