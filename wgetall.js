@@ -43,7 +43,8 @@ export async function main(ns) {
 		["corp/", "office-upgrade.js"],
 		["corp/", "corp-starter.js"],
 		["corp/", "corp-init-products.js"],
-		["sleeves/", "study-all.js"]
+		["sleeves/", "study-all.js"],
+		["sleeves/", "sleeves-starter.js"]
 	]
 
 	//Pull them
