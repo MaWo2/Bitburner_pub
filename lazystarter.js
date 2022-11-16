@@ -6,7 +6,7 @@
  */
 export async function main(ns) {
 	var filesToExecute = [
-		"/sleeves/sleeve-starter.js",
+		//"/sleeves/sleeve-starter.js", //--> moved to different caller
 		"/data-mining/world-profiler.js",
 		"scpToWorld.js",
 		"worldcracker.js",
@@ -24,5 +24,6 @@ export async function main(ns) {
 		await ns.sleep(5000);
 	}
 	ns.tprint("LazyStarter done running. Enjoy!");
-	ns.spawn("selfHackWorld.js", 1); //call the script again, because in endgame situation worldcracker is not finished before selfhack starts
+	// no longer necessary, as the waiting time between execs was reduced in worldcracker script
+	//ns.spawn("selfHackWorld.js", 1); //call the script again, because in endgame situation worldcracker is not finished before selfhack starts
 }
