@@ -22,6 +22,7 @@ export async function main(ns) {
 		["", "stopworld.js"],
 		["", "shareme.js"],
 		["", "endgame-starter.js"],
+		["", "autostart.js"],
 		["simplehack/", "simplehack-self.js"],
 		["simplehack/", "simplehack-template.js"],
 		["loophack/", "grow_loop.js"],
