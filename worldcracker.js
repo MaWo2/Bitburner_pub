@@ -5,7 +5,7 @@
  */
 export async function main(ns) {
 	var target = [];
-	var waitTime = 50;
+	var waitTime = 1; //50;
 
 	//check, if argument was provided
 	//if so, crack that server
