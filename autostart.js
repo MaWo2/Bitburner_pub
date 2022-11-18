@@ -22,17 +22,24 @@ export async function main(ns) {
 	//accept faction invitations, if there were any
 	if (factionsAvailable.length > 0) {
 		ns.toast("Accepting faction invitations.");
-		for (faction in factionsAvailable) {
-			ns.singularity.joinFaction(faction);
+		for (let faction in factionsAvailable) {
+			ns.singularity.joinFaction(factionsAvailable[faction]);
 		}
 	}
 	//set sleeves to work
+	await ns.sleep(1000); //wait for factions to be properly available for sleeves?
 	ns.toast("Setting sleeves to work.");
 	ns.exec("/sleeves/sleeve-starter.js", "home", 1);
 	//set player to study at University
 	//LATER: Check, if faction is available, that we can work for
-	ns.toast("Studying...");
-	ns.singularity.universityCourse("Rothman University", "Study Computer Science", true);
+	if (factionsAvailable.length > 0) {
+		//needs adaption for factions wo hacking...
+		ns.singularity.workForFaction(factionsAvailable[0], "Hacking Contracts", true);
+		ns.toast("Hacking for Faction.");
+	} else {
+		ns.toast("Studying...");
+		ns.singularity.universityCourse("Rothman University", "Study Computer Science", true);
+	}
 	//buy hacknet server
 	//not available???
 	//buy TOR browser
@@ -41,6 +48,8 @@ export async function main(ns) {
 		ns.toast("Purchasing TOR browser.");
 		ns.singularity.purchaseTor();
 	}
+	//LATER: Check if we have at least one programme (e.g. BruteSSH.exe)
+	//if not, build it
 	//wait until player hacking level reached 40
 	ns.toast("Waiting for hacking level of 40.");
 	while (ns.getHackingLevel() < 40) {
