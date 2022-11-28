@@ -28,6 +28,8 @@ export async function main(ns) {
 				sFactions.push(pFactions[faction]);
 			}
 		}
+	} else {
+		sFactions = pFactions;
 	}
 
 	//check, if factions are available
