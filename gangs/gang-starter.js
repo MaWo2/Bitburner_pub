@@ -29,12 +29,14 @@ export async function main(ns) {
 		i++;
 	}
 
+	/**
 	//debug
 	var gangInfo = ns.gang.getGangInformation();
 	ns.tprint(gangInfo);
 	var canRecr = ns.gang.canRecruitMember();
 	ns.tprint(canRecr);
-
+	*/
+	
 	ns.exec("/gangs/gang-recruiter.js", "home", 1);
 
 }
