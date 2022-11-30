@@ -9,6 +9,9 @@
  */
 /** @param {NS} ns */
 export async function main(ns) {
+	//switch to allow only non-crime tasks
+	var noCrimeOption = ns.args[0] || "crime"; // "nocrime"
+
 	var plyrObj = ns.getPlayer();
 	var pFactions = plyrObj.factions;
 	var sFactions = [];
@@ -42,8 +45,10 @@ export async function main(ns) {
 	//create list of tasks
 	//priorise hacking work, but make 2 sleeves commit "Mug" crime for stats
 	var taskList = [];
-	for (let i = 0; i < 6; i++) {
-		if (i < 4) {
+	var slvCount = ns.sleeve.getNumSleeves();
+
+	for (let i = 0; i < slvCount; i++) {
+		if (i < slvCount - 2) {
 			//check if factions are available
 			if (i < sFactions.length) {
 				taskList.push("Faction");
@@ -51,7 +56,16 @@ export async function main(ns) {
 				taskList.push("University");
 			}
 		} else {
-			taskList.push("Crime");
+			if (noCrimeOption == "crime") {
+				taskList.push("Crime");
+			} else {
+				//check if factions are available
+				if (i < sFactions.length) {
+					taskList.push("Faction");
+				} else {
+					taskList.push("University");
+				}
+			}
 		}
 	}
 	//ns.tprint(taskList);
@@ -69,4 +83,5 @@ export async function main(ns) {
 				ns.sleeve.setToUniversityCourse(i, "Rothman University", "Study Computer Science");
 		}
 	}
+	ns.tprint("Sleeves successfully set to work.");
 }
