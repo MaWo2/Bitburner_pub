@@ -46,7 +46,10 @@ export async function main(ns) {
 		["corp/", "corp-init-products.js"],
 		["sleeves/", "study-all.js"],
 		["sleeves/", "sleeve-starter.js"],
-		["sleeves/", "all-go-murder.js"]
+		["sleeves/", "all-go-murder.js"],
+		["gangs/", "gang-starter.js"],
+		["gangs/", "gang-recruiter.js"],
+		["gangs/", "gang-ascender.js"]
 	]
 
 	//Pull them
