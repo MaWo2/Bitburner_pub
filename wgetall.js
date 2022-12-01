@@ -23,6 +23,8 @@ export async function main(ns) {
 		["", "shareme.js"],
 		["", "endgame-starter.js"],
 		["", "autostart.js"],
+		["", "32GB_autostart.js"],
+		["", "32GB_auto_continue.js"],
 		["simplehack/", "simplehack-self.js"],
 		["simplehack/", "simplehack-template.js"],
 		["loophack/", "grow_loop.js"],
