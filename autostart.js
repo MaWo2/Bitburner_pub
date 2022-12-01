@@ -17,6 +17,7 @@
 export async function main(ns) {
 	//delay, to make sure the game loaded properly
 	await ns.sleep(2000);
+	
 	//check for faction invites
 	var factionsAvailable = ns.singularity.checkFactionInvitations();
 	//accept faction invitations, if there were any
@@ -26,10 +27,7 @@ export async function main(ns) {
 			ns.singularity.joinFaction(factionsAvailable[faction]);
 		}
 	}
-	//set sleeves to work
-	await ns.sleep(1000); //wait for factions to be properly available for sleeves?
-	ns.toast("Setting sleeves to work.");
-	ns.exec("/sleeves/sleeve-starter.js", "home", 1);
+
 	//set player to study at University
 	//LATER: Check, if faction is available, that we can work for
 	if (factionsAvailable.length > 0) {
@@ -40,6 +38,20 @@ export async function main(ns) {
 		ns.toast("Studying...");
 		ns.singularity.universityCourse("Rothman University", "Study Computer Science", true);
 	}
+
+	//check, if we have more than 32GB on home
+	//if not, the sleeve-starter cannot be called
+	//--> hand over to spawning script
+	if (ns.getServerMaxRam("home") <= 32) {
+		ns.toast("Not enough RAM, spawning sleeve-starter and respawning.")
+		ns.spawn("/sleeves/sleeve-starter.js", 1, "crime", true);
+	}
+
+	//set sleeves to work
+	await ns.sleep(1000); //wait for factions to be properly available for sleeves?
+	ns.toast("Setting sleeves to work.");
+	ns.exec("/sleeves/sleeve-starter.js", "home", 1);
+	
 	//buy hacknet server
 	//not available???
 	//buy TOR browser
