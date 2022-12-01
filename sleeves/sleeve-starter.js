@@ -11,6 +11,8 @@
 export async function main(ns) {
 	//switch to allow only non-crime tasks
 	var noCrimeOption = ns.args[0] || "crime"; // "nocrime"
+	//switch to allow spawning of a script afterwards
+	var spawnOption = ns.args[1] || false;
 
 	var plyrObj = ns.getPlayer();
 	var pFactions = plyrObj.factions;
@@ -84,4 +86,10 @@ export async function main(ns) {
 		}
 	}
 	ns.tprint("Sleeves successfully set to work.");
+
+	//spawn another autostart script, if chosen
+	if (spawnOption == true) {
+		ns.spawn("32GB_auto_continue.js", 1);
+	}
+
 }
