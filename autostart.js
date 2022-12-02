@@ -67,6 +67,15 @@ export async function main(ns) {
 	while (ns.getHackingLevel() < 40) {
 		await ns.sleep(1000);
 	}
+
+	//create BruteSSH.exe
+	ns.toast("Developing BruteSSH.exe.");
+	try {
+		ns.singularity.createProgram("BruteSSH.exe", true);
+	} catch {
+		ns.toast("Not possible.");
+	}
+
 	//run lazystarter
 	ns.toast("Done. Handing over to lazystarter.");
 	ns.exec("lazystarter.js", "home", 1);
