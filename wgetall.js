@@ -22,6 +22,7 @@ export async function main(ns) {
 		["", "stopworld.js"],
 		["", "shareme.js"],
 		["", "endgame-starter.js"],
+		["", "restart-endgame.js"],
 		["", "autostart.js"],
 		["", "32GB_autostart.js"],
 		["", "32GB_auto_continue.js"],
