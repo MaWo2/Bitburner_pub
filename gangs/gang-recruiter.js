@@ -100,6 +100,6 @@ export async function main(ns) {
 	ns.gang.setMemberTask(memberNames[6], "Cyberterrorism");
 
 	//future plan: --> hand over to script that ascends members and optimises money laundering vs. EH
-	ns.exec("/gangs/gang-ascender.js", "home", 1);
+	ns.spawn("/gangs/gang-ascender.js", "home", 1);
 
 }
