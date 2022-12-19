@@ -37,6 +37,6 @@ export async function main(ns) {
 	ns.tprint(canRecr);
 	*/
 	
-	ns.spawn("/gangs/gang-recruiter.js", "home", 1);
+	ns.spawn("/gangs/gang-recruiter.js", 1);
 
 }
