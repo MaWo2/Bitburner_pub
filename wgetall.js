@@ -19,6 +19,8 @@ export async function main(ns) {
 		["", "lazystarter.js"],
 		["", "folder-scp.js"],
 		["", "connect-to.js"],
+		["", "sconnect-to.js"],
+		["", "backdoor.js"],
 		["", "stopworld.js"],
 		["", "shareme.js"],
 		["", "endgame-starter.js"],
