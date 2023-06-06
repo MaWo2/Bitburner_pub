@@ -18,7 +18,8 @@ export async function main(ns) {
 	}
 	
 	//copy files to new servers
-	var foldersToCopy = ["/simplehack", "/batchhack", "/loophack"];
+	//var foldersToCopy = ["/simplehack", "/batchhack", "/loophack"];
+	var foldersToCopy = ["simplehack", "batchhack", "loophack"]; //bugfix for 2.3
 	var filesToCopy = ["monitor.js", "n-monitor.js", "purchaseServer8GB.js", "connect-to.js"];
 	for (let j = 0; j < foldersToCopy.length; j++) {
 		await ns.scp(ns.ls("home", foldersToCopy[j]), serverToUpgrade, "home");
