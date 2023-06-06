@@ -6,7 +6,8 @@
  */
 export async function main(ns) {
 	var target = ns.read("ServersOfTheWorld.txt").split(",");
-	var foldersToCopy = ["/simplehack", "/batchhack", "/loophack"];
+	//var foldersToCopy = ["/simplehack", "/batchhack", "/loophack"];
+	var foldersToCopy = ["simplehack", "batchhack", "loophack"]; //bugfix for 2.3
 	var filesToCopy = ["monitor.js", "n-monitor.js", "purchaseServer8GB.js", "connect-to.js", "shareme.js"];
 	for (let i = 0; i < target.length; i++) {
 		//copy files to servers
